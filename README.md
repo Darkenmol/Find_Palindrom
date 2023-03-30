@@ -1,2 +1,2 @@
 # Find_palindrom
-Тестовая задача поиск ближайшего большего палиндрома
+Solving the problem of finding a larger, nearest palindrome.
