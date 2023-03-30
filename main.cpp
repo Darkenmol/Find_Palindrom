@@ -4,6 +4,7 @@
 using namespace std;
 
 void Palindrom(int *a);
+void FindPalindrom(int *a, int *count);
 
 int main(void){
     int a;
@@ -20,28 +21,30 @@ int main(void){
 }
 
 inline void Palindrom(int *a){
-    int count = 0, num0 = (*a);
-    
-    int num, num3, count1;
+    int count = 0;
+
+    int num;
 
     for (int i = 1; i < 1000000000; i *= 10){
-        num3 = num0 / i;
+        num = (*a) / i;
 
-        if (num3 == 0)
+        if (num == 0)
             break;
 
         count += 1;
     }
-    int num2[count];
 
-    link:
-    count1 = 0;
+    FindPalindrom(&(*a), &count);
+}
 
-    for (int i = 1, j = count - 1; i < pow(10, count); i *= 10, j--){
+void FindPalindrom(int *a, int *count){
+    int num2[(*count)], num, num0 = *a, count1;
+
+    for (int i = 1, j = (*count) - 1; i < pow(10, (*count)); i *= 10, j--){
         num = (num0 / i) % 10;
         num2[j] = num;
     }
-    for (int i = 0, j = count - 1; i < count / 2; i++, j--){
+    for (int i = 0, j = (*count) - 1; i < j; i++, j--){
         if (num2[i] == num2[j]){
             count1 += 1;
         }
@@ -50,11 +53,11 @@ inline void Palindrom(int *a){
         }
     }
 
-    if (count1 == (count / 2)){
+    if (count1 == ((*count) / 2)){
         (*a) = num0;
     }
     else {
         num0++;
-        goto link;
+        FindPalindrom(&(*a), *(&count));
     }
 }
